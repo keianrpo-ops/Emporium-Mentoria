@@ -11,11 +11,14 @@ const NavBar: React.FC = () => {
     { name: 'Inversión', href: '#inversion' },
   ];
 
-  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>, href: string) => {
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement | HTMLDivElement>,
+    href: string
+  ) => {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const elem = document.getElementById(targetId);
-    
+
     if (elem) {
       setIsOpen(false);
       const headerOffset = 80;
@@ -24,7 +27,7 @@ const NavBar: React.FC = () => {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: "smooth"
+        behavior: 'smooth',
       });
     }
   };
@@ -33,23 +36,23 @@ const NavBar: React.FC = () => {
     <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
-          <div 
-            className="flex items-center cursor-pointer group" 
+          {/* Logo + nombre */}
+          <div
+            className="flex items-center cursor-pointer group"
             onClick={(e) => handleScroll(e, '#inicio')}
           >
-            {/* 
-                IMPORTANTE: Reemplaza la URL en 'src' con la URL de tu imagen del logo.
-                Si tu imagen es un archivo local, asegúrate de importarla o colocarla en la carpeta public.
-            */}
-            <img 
-              src="https://via.placeholder.com/200x60/0f172a/ffffff?text=FENIX+LOGO" 
-              alt="Fenix Pro Logo" 
-              className="h-10 w-auto object-contain"
+            <img
+              src="/logo-mentoria.png"
+              alt="Emporium Mentoria Logo"
+              className="h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(56,189,248,0.6)]"
             />
-            {/* Texto de respaldo por si el logo no carga o se prefiere texto */}
-            <span className="ml-3 text-xl font-black text-white tracking-wider hidden sm:block">FENIX<span className="text-purple-500">PRO</span></span>
+            <span className="ml-3 text-lg sm:text-xl font-black text-white tracking-wider">
+              EMPORIUM
+              <span className="text-purple-400"> MENTORIA</span>
+            </span>
           </div>
-          
+
+          {/* Links desktop */}
           <div className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -70,6 +73,7 @@ const NavBar: React.FC = () => {
             </a>
           </div>
 
+          {/* Botón menú mobile */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -81,7 +85,7 @@ const NavBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Menú mobile */}
       {isOpen && (
         <div className="md:hidden bg-slate-900 border-t border-slate-800">
           <div className="px-4 pt-4 pb-6 space-y-2">
