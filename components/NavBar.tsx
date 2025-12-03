@@ -36,7 +36,7 @@ const NavBar: React.FC = () => {
     <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20">
-          {/* Logo + nombre */}
+          {/* Logo + título antiguo (FENIXPRO) */}
           <div
             className="flex items-center cursor-pointer group"
             onClick={(e) => handleScroll(e, '#inicio')}
@@ -44,11 +44,10 @@ const NavBar: React.FC = () => {
             <img
               src="/logo-mentoria.png"
               alt="Emporium Mentoria Logo"
-              className="h-10 w-auto object-contain drop-shadow-[0_0_12px_rgba(56,189,248,0.6)]"
+              className="h-12 w-auto object-contain mr-2 drop-shadow-[0_0_12px_rgba(56,189,248,0.6)]"
             />
-            <span className="ml-3 text-lg sm:text-xl font-black text-white tracking-wider">
-              EMPORIUM
-              <span className="text-purple-400"> MENTORIA</span>
+            <span className="text-xl font-black text-white tracking-wider hidden sm:block">
+              FENIX<span className="text-purple-500">PRO</span>
             </span>
           </div>
 
