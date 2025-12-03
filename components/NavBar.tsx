@@ -35,8 +35,7 @@ const NavBar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* h-24 para darle más altura al header */}
-        <div className="flex justify-between h-24">
+        <div className="flex justify-between h-28">
           {/* Logo + título FENIXPRO */}
           <div
             className="flex items-center cursor-pointer group"
@@ -45,7 +44,7 @@ const NavBar: React.FC = () => {
             <img
               src="/logo-mentoria.png"
               alt="Emporium Mentoria Logo"
-              className="h-20 w-auto object-contain mr-3 drop-shadow-[0_0_18px_rgba(56,189,248,0.8)]"
+              className="h-28 w-auto object-contain mr-4 drop-shadow-[0_0_20px_rgba(56,189,248,0.8)]"
             />
             <span className="text-xl font-black text-white tracking-wider hidden sm:block">
               FENIX<span className="text-purple-500">PRO</span>
