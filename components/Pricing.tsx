@@ -2,10 +2,24 @@ import React from 'react';
 import { PRICING, BANK_INFO } from '../constants';
 import { Check, Copy, CreditCard, Sparkles, Star } from 'lucide-react';
 
+// =================================================================
+// 💰 LINKS DE MERCADO PAGO
+// =================================================================
+const MERCADO_PAGO_LINKS: { [key: number]: string } = {
+  // Plan Semanal (Índice 0)
+  0: 'https://mpago.li/1goKeSY', // $350.000
+  // Plan Mensual (Índice 1)
+  1: 'https://mpago.li/2ybC3rC', // $1.200.000
+  // Plan Anual VIP (Índice 2)
+  // CORREGIDO: Se agregó el protocolo 'https://' para que funcione como enlace de pago.
+  2: 'https://link.mercadopago.com.co/fennixpro', // Enlace genérico/placeholder
+};
+
 const Pricing: React.FC = () => {
+  // ⚠️ Reemplazado alert() por console.log()
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
-    alert(`Copiado: ${text}`);
+    console.log(`Copiado al portapapeles: ${text}`);
   };
 
   return (
@@ -25,64 +39,69 @@ const Pricing: React.FC = () => {
         {/* Grid adjusted for 3 items (1, 2, or 3 columns based on screen) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto mb-24 items-start">
           {PRICING.map((plan, index) => {
+             // Lógica para asignar el link de Mercado Pago
+             const paymentLink = MERCADO_PAGO_LINKS[index] || '#error-link-no-definido';
+             
              // Logic to highlight the middle card (Monthly) or the VIP (Annual)
              const isMiddle = index === 1;
              const isAnnual = index === 2;
              
              return (
-            <div 
-              key={index} 
-              className={`relative rounded-3xl p-8 flex flex-col h-full border transition-all duration-500 ${
-                isMiddle
-                  ? 'bg-slate-900 border-purple-500 shadow-[0_0_50px_-10px_rgba(168,85,247,0.2)] md:-mt-8 md:mb-8 z-10' 
-                  : isAnnual 
-                    ? 'bg-gradient-to-b from-slate-900 to-slate-950 border-orange-500/50 shadow-lg'
-                    : 'bg-slate-950 border-slate-800'
-              }`}
-            >
-              {isMiddle && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg border border-purple-400">
-                  <Star className="w-3 h-3 fill-current"/> Más Popular
-                </div>
-              )}
-              {isAnnual && (
-                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg">
-                  <Sparkles className="w-3 h-3 fill-current"/> Mejor Valor
-                </div>
-              )}
+             <div 
+               key={index} 
+               className={`relative rounded-3xl p-8 flex flex-col h-full border transition-all duration-500 ${
+                 isMiddle
+                   ? 'bg-slate-900 border-purple-500 shadow-[0_0_50px_-10px_rgba(168,85,247,0.2)] md:-mt-8 md:mb-8 z-10' 
+                   : isAnnual 
+                     ? 'bg-gradient-to-b from-slate-900 to-slate-950 border-orange-500/50 shadow-lg'
+                     : 'bg-slate-950 border-slate-800'
+               }`}
+             >
+               {isMiddle && (
+                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-purple-600 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg border border-purple-400">
+                   <Star className="w-3 h-3 fill-current"/> Más Popular
+                 </div>
+               )}
+               {isAnnual && (
+                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-orange-500 text-white px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-1 shadow-lg">
+                   <Sparkles className="w-3 h-3 fill-current"/> Mejor Valor
+                 </div>
+               )}
 
-              <h3 className={`text-xl font-bold mb-2 ${isAnnual ? 'text-orange-400' : isMiddle ? 'text-white' : 'text-slate-300'}`}>{plan.title}</h3>
-              <div className="mb-8">
-                <span className="text-3xl lg:text-4xl font-black text-white tracking-tight block mb-1">{plan.price}</span>
-                <span className="text-xs font-medium text-slate-500 uppercase tracking-widest">{plan.period}</span>
-              </div>
-              
-              <div className="h-px w-full mb-8 bg-slate-800"></div>
+               <h3 className={`text-xl font-bold mb-2 ${isAnnual ? 'text-orange-400' : isMiddle ? 'text-white' : 'text-slate-300'}`}>{plan.title}</h3>
+               <div className="mb-8">
+                 <span className="text-3xl lg:text-4xl font-black text-white tracking-tight block mb-1">{plan.price}</span>
+                 <span className="text-xs font-medium text-slate-500 uppercase tracking-widest">{plan.period}</span>
+               </div>
+               
+               <div className="h-px w-full mb-8 bg-slate-800"></div>
 
-              <ul className="space-y-4 mb-10 flex-grow">
-                {plan.features.map((feature, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <div className={`p-0.5 rounded-full mr-3 shrink-0 ${isMiddle ? 'text-purple-400' : isAnnual ? 'text-orange-400' : 'text-slate-500'}`}>
-                       <Check className="h-4 w-4" />
-                    </div>
-                    <span className="text-sm font-medium text-slate-300">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              <a 
-                href="#contacto"
-                className={`block w-full text-center py-4 rounded-xl font-bold transition-all ${
-                  isMiddle
-                    ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-900/20' 
-                    : isAnnual
-                      ? 'bg-orange-500 hover:bg-orange-400 text-white shadow-lg shadow-orange-900/20'
-                      : 'bg-slate-800 hover:bg-slate-700 text-white'
-                }`}
-              >
-                Seleccionar
-              </a>
-            </div>
-          )})}
+               <ul className="space-y-4 mb-10 flex-grow">
+                 {plan.features.map((feature, idx) => (
+                   <li key={idx} className="flex items-start">
+                     <div className={`p-0.5 rounded-full mr-3 shrink-0 ${isMiddle ? 'text-purple-400' : isAnnual ? 'text-orange-400' : 'text-slate-500'}`}>
+                        <Check className="h-4 w-4" />
+                     </div>
+                     <span className="text-sm font-medium text-slate-300">{feature}</span>
+                   </li>
+                 ))}
+               </ul>
+               <a 
+                 href={paymentLink}
+                 target="_blank"
+                 rel="noopener noreferrer"
+                 className={`block w-full text-center py-4 rounded-xl font-bold transition-all ${
+                   isMiddle
+                     ? 'bg-purple-600 hover:bg-purple-500 text-white shadow-lg shadow-purple-900/20' 
+                     : isAnnual
+                       ? 'bg-orange-500 hover:bg-orange-400 text-white shadow-lg shadow-orange-900/20'
+                       : 'bg-slate-800 hover:bg-slate-700 text-white'
+                 }`}
+               >
+                 Seleccionar
+               </a>
+             </div>
+           )})}
         </div>
 
         <div id="contacto" className="max-w-4xl mx-auto bg-slate-900/50 backdrop-blur-md rounded-3xl p-8 md:p-12 border border-slate-800 scroll-mt-24 relative overflow-hidden">
