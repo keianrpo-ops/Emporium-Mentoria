@@ -232,8 +232,8 @@ const PREMIUM_MODULES = [
         <div className="border-t border-slate-800 pt-16">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
             <div>
-              <p className="text-lg uppercase tracking-[0.25em] text-amber-400 mb-5 flex items-center gap-9">
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-400 animate-pulse" />
+              <p className="text-lg uppercase tracking-[0.25em] text-amber-400 mb-5 flex items-center gap-9 justify-center w-full">
+                <span className="w-8 h-8 rounded-full bg-amber-400 animate-pulse" />
                 Módulos Extra Premium, LOS PLANES DE ESTA MENTORIA SON SEMANALES MAX 5 SEMANAS
               </p>
               <h3 className="text-2xl font-bold text-white">Add-ons Estratégicos</h3>
