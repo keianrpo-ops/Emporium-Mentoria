@@ -39,7 +39,7 @@ const PREMIUM_MODULES = [
     tag: 'Add-on Premium',
     label: 'ChateaPro',
     price: '$180.000',
-    priceLabel: 'Pago único por implementación',
+    priceLabel: 'Pago semanal por implementación',
     accent: 'from-cyan-500/60 via-blue-500/40 to-slate-900',
     iconColor: 'text-cyan-300',
     badgeColor: 'bg-cyan-500/10 text-cyan-200 border-cyan-400/50',
