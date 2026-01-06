@@ -47,7 +47,7 @@ const NavBar: React.FC = () => {
               className="h-28 w-auto object-contain mr-4 drop-shadow-[0_0_20px_rgba(56,189,248,0.8)]"
             />
             <span className="text-xl font-black text-white tracking-wider hidden sm:block">
-              ETHER<span className="text-purple-500">NUM</span>
+              FENNIX<span className="text-purple-500">PRO</span>
             </span>
           </div>
 
